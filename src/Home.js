@@ -6,13 +6,13 @@ import Hero from './Hero';
 import rotateRight from './icons/down-arrow.png';
 import rotateLeft from './icons/down-arrow(1).png';
 import './index.css';
-import _ from 'lodash';
+// import _ from 'lodash';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
 
-  let pos = 720;
+  let pos = 0;
 
   useEffect(() => {
     const animation = gsap.to('.dimag_kharab', {
@@ -33,23 +33,30 @@ export default function Home() {
 
 
   // Throttle the functions to prevent rapid calls
-  const throttledRotateSlideRight = _.throttle(() => {
-    pos += 45;
-    gsap.to('.dimag_kharab', {
-      rotate: -pos,
-      ease: "power4.out",
-      duration: 0.5
-    });
-  }, []); // Adjust the throttle time as needed
+  // const throttledRotateSlideRight = _.throttle(() => {
+  //   pos += 45;
+  //   gsap.to('.dimag_kharab', {
+  //     rotate: -pos,
+  //     ease: "power4.out",
+  //     duration: 0.5
+  //   });
+  // }, []); // Adjust the throttle time as needed
 
-  const throttledRotateSlideLeft = _.throttle(() => {
-    pos -= 45;
-    gsap.to('.dimag_kharab', {
-      rotate: -pos,
-      ease: "power4.out",
-      duration: 0.5
-    });
-  }, []); // Adjust the throttle time as needed
+
+   function funapna(){
+      pos += 45;
+      document.querySelector(".dimag_kharab").style.transform = `rotate(${-pos}deg)`;
+      document.querySelector(".dimag_kharab").style.transition = "0.5s";
+  }
+
+  // const throttledRotateSlideLeft = _.throttle(() => {
+  //   pos -= 45;
+  //   gsap.to('.dimag_kharab', {
+  //     rotate: -pos,
+  //     ease: "power4.out",
+  //     duration: 0.5
+  //   });
+  // }, []); // Adjust the throttle time as needed
 
   return (
     <>
@@ -60,10 +67,10 @@ export default function Home() {
           <div className="dimag_kharab">
             <CardSlides />
           </div>
-          <button className="rotateLeft" onClick={throttledRotateSlideLeft}>
+          <button className="rotateLeft" onClick={funapna}>
             <img src={rotateLeft} alt="rotate left" />
           </button>
-          <button className="rotateRight" onClick={throttledRotateSlideRight}>
+          <button className="rotateRight" onClick={funapna}>
             <img src={rotateRight} alt="rotate right" />
           </button>
         </div>
