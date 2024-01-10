@@ -304,6 +304,10 @@ nav {
     position: absolute;
 }
 
+.dimag_kharab {
+    z-index: 0;
+}
+
 .cards .rotateLeft {
     position: absolute;
     height: 50px;
